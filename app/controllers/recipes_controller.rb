@@ -12,7 +12,17 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe =  Recipe.new recipe_params
+    @recipe =  Recipe.new(recipe_params)
+    @recipe.save
+    redirect_to @recipe
+  end
+  
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe =  Recipe.new(recipe_params)
     @recipe.save
     redirect_to @recipe
   end
