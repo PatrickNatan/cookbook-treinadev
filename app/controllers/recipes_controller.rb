@@ -16,8 +16,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe
     else
-      flash.now[:alert]="Você deve informar todos os dados da receita"
-      render "new"
+      flash.now[:alert]= 'Não foi possível salvar a receita'
+      render :new
     end
   end
   
@@ -30,13 +30,13 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
-      flash.now[:alert]="Você deve informar todos os dados da receita"
-      render "edit"
+      flash.now[:alert]= 'Não foi possível salvar a receita '
+      render :edit
     end
   end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title,:recipe_type,:cuisine,:difficulty,:cook_time,:ingredients,:cook_method)
+    params.require(:recipe).permit(:title,:recipe_type_id,:cuisine,:difficulty,:cook_time,:ingredients,:cook_method)
   end
 end
