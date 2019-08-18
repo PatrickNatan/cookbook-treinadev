@@ -1,0 +1,11 @@
+ 
+ <% if @recipe_type.errors.any? %>
+    <% @recipe_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+    <% end %>
+<% end %>
+<%= form_for @recipe_type do |t| %>
+    <%= t.label :name, 'Tipo de receita' %>
+    <%= t.text_field :name %>
+    <%= t.submit 'Enviar' %>
+<%end%>
