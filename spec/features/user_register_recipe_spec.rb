@@ -5,9 +5,16 @@ feature 'User register recipe' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     RecipeType.create(name: 'Sobremesa')
     RecipeType.create(name: 'Entrada')
-
+    usr = User.create!(email: 'tst@email.com', password: '123456')
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    within("form") do
+      fill_in 'Email', with: usr.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end
+
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Tabule'
