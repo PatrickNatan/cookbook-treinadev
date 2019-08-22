@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!,only: %i[new create edit update my_recipes]
   def index
     @recipes = Recipe.all
   end
@@ -42,6 +43,14 @@ class RecipesController < ApplicationController
       flash[:alert] = "Não foi possível encontrar a receita"
       redirect_to root_path
     end
+  end
+
+  def my_recipes
+    if current_user.recipes.empty?
+      flash[:alert] = "Você não tem receitas cadastradas"
+      redirect_to root_path
+    end
+    @recipes= current_user.recipes
   end
 
   private
