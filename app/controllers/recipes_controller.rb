@@ -25,6 +25,9 @@ class RecipesController < ApplicationController
   
   def edit
     @recipe = Recipe.find(params[:id])
+    unless current_user.recipe_owner?(@recipe)
+      redirect_to root_path
+    end
   end
 
   def update

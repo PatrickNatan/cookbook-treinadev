@@ -67,4 +67,29 @@ feature 'User update recipe' do
 
     expect(page).to have_content('Não foi possível salvar a receita')
   end
+  scenario "user cannot edit another user's recipe by route" do
+    #A--
+    recipe_type = RecipeType.create!(name: 'Sobremesa')
+    user = User.create!(email: 'tst@teste.com', password: '123456')
+    userT = User.create!(email: 'teste@teste.com', password: '123456')
+    recipe = Recipe.create!(title: 'Bolo',
+      difficulty: 'Médio',
+      recipe_type: recipe_type,
+      cuisine: 'Brasileira',
+      cook_time: 50, 
+      ingredients:  'Farinha, açucar, cenoura',
+      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+      user:user)
+    #-A-
+    visit root_path
+    click_on 'Entrar'
+    within('form') do
+      fill_in 'Email', with: userT.email
+      fill_in 'Senha', with: '123456'
+      click_on 'Entrar'
+    end  
+    visit edit_recipe_path(recipe)
+    #--A
+    expect(current_path).to eq root_path
+  end
 end
