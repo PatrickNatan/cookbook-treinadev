@@ -19,7 +19,7 @@
 
 <%= link_to 'Voltar', root_path %>
 
-<% if current_user %>
+<% if current_user  && current_user.recipe_owner?(@recipe)%>
     <%= link_to 'Editar', edit_recipe_path %>
 <%end%>
 

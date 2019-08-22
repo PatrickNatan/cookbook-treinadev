@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 feature 'Admin register recipe type' do
-
         scenario 'successfully' do
 
             visit root_path
