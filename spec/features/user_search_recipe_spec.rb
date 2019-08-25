@@ -4,13 +4,13 @@ feature 'User search recipe' do
   scenario 'sucessfully' do
     #
     user = User.create!(email: 'tst@email.com', password: '123456')
-    recipe_type=RecipeType.create(name: 'Sobremesa')
-    Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+    recipe_type=RecipeType.create!(name: 'Entrada')
+    Recipe.create!(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
                            cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user: user)
-    Recipe.create(title: 'Pudim', recipe_type: recipe_type,
+    Recipe.create!(title: 'Pudim', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
@@ -25,7 +25,7 @@ feature 'User search recipe' do
   end
 
   scenario 'and search for a recipe by exactly name and dont find' do
-    recipe_type=RecipeType.create(name: 'Sobremesa')
+    recipe_type=RecipeType.create(name: 'Entrada')
     user = User.create!(email: 'tst@email.com', password: '123456')
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Médio',
@@ -46,7 +46,7 @@ feature 'User search recipe' do
   end
   scenario "and show similiar" do
     user = User.create!(email: 'tst@email.com', password: '123456')
-    recipe_type=RecipeType.create(name: 'Sobremesa')
+    recipe_type=RecipeType.create(name: 'Entrada')
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                            cuisine: 'Brasileira', difficulty: 'Médio',
                            cook_time: 60,

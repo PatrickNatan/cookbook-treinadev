@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User update recipe' do
   scenario 'successfully' do
     user = User.create!(email: 'tst@email.com', password: '123456')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipe_type = RecipeType.create!(name: "Entrada")
     RecipeType.create(name: 'Entrada')
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
@@ -39,7 +39,7 @@ feature 'User update recipe' do
 
   scenario 'and must fill in all fields' do
     user = User.create!(email: 'tst@email.com', password: '123456')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipe_type = RecipeType.create!(name: "Entrada")
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
@@ -70,7 +70,7 @@ feature 'User update recipe' do
    #Autenticação de rota e de mostra botão
   scenario "user is not recipe author see edit button" do
     #A--
-    recipe_type = RecipeType.create!(name: 'Sobremesa')
+    recipe_type = RecipeType.create!(name: "Entrada")
     user = User.create!(email: 'tst@teste.com', password: '123456')
     userT = User.create!(email: 'teste@teste.com', password: '123456')
     recipe = Recipe.create!(title: 'Bolo',
@@ -96,7 +96,7 @@ feature 'User update recipe' do
  
   scenario "user cannot edit another user's recipe by route" do
     #A--
-    recipe_type = RecipeType.create!(name: 'Sobremesa')
+    recipe_type = RecipeType.create!(name: "Entrada")
     user = User.create!(email: 'tst@teste.com', password: '123456')
     userT = User.create!(email: 'teste@teste.com', password: '123456')
     recipe = Recipe.create!(title: 'Bolo',

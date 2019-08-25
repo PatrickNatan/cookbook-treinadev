@@ -54,8 +54,8 @@ feature 'User' do
     scenario 'no auth cant see edit button ' do
       #A--
       user = User.create!(email:"tst@email.com", password:"123456")
-      recipe_type = RecipeType.create(name: 'Sobremesa')
-      recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+      recipe_type = RecipeType.create(name: 'Entrada')
+      recipe = Recipe.create(title: 'Bolo de cenoura gourmet', recipe_type: recipe_type,
                              cuisine: 'Brasileira', difficulty: 'Médio',
                              cook_time: 60,
                              ingredients: 'Farinha, açucar, cenoura',
@@ -71,8 +71,8 @@ feature 'User' do
     scenario 'no auth cant acess edit route ' do
       #A--
       user = User.create!(email:"tst@email.com", password:"123456")
-      recipe_type = RecipeType.create(name: 'Sobremesa')
-      recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+      recipe_type = RecipeType.create(name: 'Entrada')
+      recipe = Recipe.create(title: 'Bolo de cenoura gourmet', recipe_type: recipe_type,
                              cuisine: 'Brasileira', difficulty: 'Médio',
                              cook_time: 60,
                              ingredients: 'Farinha, açucar, cenoura',
@@ -96,6 +96,20 @@ feature 'User' do
       visit my_recipes_path
       #--A
       expect(current_path).to eq new_user_session_path
+    end
+
+    scenario 'no auth cant acess new_recipe_list path' do
+      #-A-
+      visit new_list_path
+      #--A
+      expect(current_path).to eq new_user_session_path
+    end
+
+    scenario 'no auth cant see Adicionar lista de receitas button' do
+      #-A-
+      visit root_path
+      #--A
+      expect(page).not_to have_content('Adicionar lista de receitas')
     end
   
 end

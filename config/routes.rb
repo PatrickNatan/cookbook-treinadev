@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   resources :recipe_types,only: %i[show new create]
+  resources :lists,only: %i[index show new create]
 end

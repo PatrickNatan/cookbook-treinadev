@@ -4,7 +4,7 @@ feature 'User view your own recipes' do
     #A--
     user = User.create!(email:"teste1@email.com", password:"123456")
     userT = User.create!(email:"teste@email.com", password:"987654")
-    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipe_type = RecipeType.create(name: 'Entrada')
     Recipe.create!(title: 'Bolo de Cafe ', difficulty: 'Médio',
     recipe_type: recipe_type, cuisine: 'Brasileira',
     cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
