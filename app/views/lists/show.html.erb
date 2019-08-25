@@ -1,2 +1,7 @@
 <h1><%= @list.name %></h1>
+<%if @list.recipes.any? %>
+    <% @list.recipes.each do |r|%>
+        <h1><%= r.title %></h1>
+    <%end%>
+<%end%>
 <%= link_to 'Voltar', lists_path %>

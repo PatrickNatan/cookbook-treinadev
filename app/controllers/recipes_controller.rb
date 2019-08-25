@@ -6,6 +6,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    if current_user
+    @lists = current_user.lists
+    @recipe_list = RecipeList.new
+    end
   end
 
   def new

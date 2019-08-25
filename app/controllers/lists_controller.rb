@@ -19,7 +19,6 @@ class ListsController <  ApplicationController
       if @list.save
         redirect_to @list
       else
-        #flash.now[:failure] = "Você não pode criar listas sem nome"
         render :new
       end
     end

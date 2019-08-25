@@ -1,16 +1,7 @@
- <% if @lists.nil? && @lists.errors.any? %>
-    <% @lists.errors.full_messages.each do |msg| %>
-
-        <li><%= msg %></li>
-
-    <% end %>
-<% end %>
- 
 
 <%= link_to 'Adicionar lista de receitas', new_list_path %>
 <%unless @lists.nil?%>
-
-    <% @lists.each do |l|%>
-        <h1><%=l.name%><\h1>
+    <% @lists.each do |list|%>
+        <h1><%= link_to list.name, list %></h1>
     <%end%>
 <%end%>

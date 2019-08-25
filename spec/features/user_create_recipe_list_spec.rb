@@ -64,7 +64,7 @@ feature 'user create recipe list' do
     scenario "user cant create two list with same name" do
       #A--
       user = User.create!(email:"teste1@email.com", password:"123456")
-      list = List.create!(name: "Lanches",user: user)
+      List.create!(name: "Lanches",user: user)
       #-A-
       visit root_path
       click_on 'Entrar'
@@ -81,11 +81,11 @@ feature 'user create recipe list' do
       expect(page).to have_content('Você não pode criar duas listas com nomes iguais')
     end
 
-    scenario "user can create list with same name of other user list" do
+    scenario "user can create lists with same name as another user list" do
       #A--
       user = User.create!(email:"teste1@email.com", password:"123456")
       another_user = User.create!(email:"teste2@email.com", password:"123456")
-      list = List.create!(name: "Lanches",user: another_user)
+      List.create!(name: "Lanches",user: another_user)
       #-A-
       visit root_path
       click_on 'Entrar'

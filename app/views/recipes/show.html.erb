@@ -19,7 +19,17 @@
 
 <%= link_to 'Voltar', root_path %>
 
+
 <% if current_user  && current_user.recipe_owner?(@recipe)%>
     <%= link_to 'Editar', edit_recipe_path %>
+<%end%>
+
+<%if current_user%>
+    <%= form_for @recipe_list, method: 'post' do |f| %>
+    <%= f.label :list_id, 'Adicionar a lista:' %>
+    <%= f.collection_select :list_id,@lists, :id, :name %>
+    <%= f.hidden_field :recipe_id, value: params[:id] %>
+    <%= f.submit 'Adicionar' %></p>
+  <% end %>
 <%end%>
 
