@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  has_one_attached :recipe_img
+
   belongs_to :recipe_type
   belongs_to :user
   

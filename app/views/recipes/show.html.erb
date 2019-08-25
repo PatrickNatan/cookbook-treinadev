@@ -1,4 +1,8 @@
 <%=flash[:failure]%>
+
+<%if @recipe.recipe_img.attached?%>
+  <%= image_tag @recipe.recipe_img%>
+<%end%>
 <h1><%= @recipe.title %></h1>
 
 <h3>Detalhes</h3>
