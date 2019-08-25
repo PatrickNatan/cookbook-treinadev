@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   end
   resources :recipe_types,only: %i[show new create]
   resources :lists,only: %i[index show new create]
-  resources :recipe_lists, only: %i[create]
+  resources :recipe_lists, only: %i[create destroy]
 end
