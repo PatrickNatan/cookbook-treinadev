@@ -8,19 +8,27 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+<div class="container-fluid">
   <nav>
+  <ul class="nav justify-content-center">
     <% if user_signed_in? %>
-        <h3><%= current_user.email %><h3>
+     <li class="nav-item">
+        <%= current_user.email %>
         <%= link_to "Sair", destroy_user_session_path, method: :delete  %>
+      </li>
     <% else %> 
-      <%= link_to "Entrar", new_user_session_path  %>
+     <li class="nav-item">
+        <%= link_to "Entrar", new_user_session_path  %>
+      </li>
     <% end %>
+    </ul>
   </nav>
-  
+</div>
+<div class="center">
   <body>
   <%=flash[:alert]%>
   <%=flash[:notice]%>
     <%= yield %>
   </body>
+</div>
 </html>
