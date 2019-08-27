@@ -100,6 +100,7 @@ feature 'user can add and remove recipe to recipe list' do
         click_on "Remover #{recipe.title}"
         #--A
         expect(page).not_to have_content("Bolo")
+        expect(page).to have_content("Pudim")
         expect(list.recipes.first.title).not_to include("Bolo")
     end
 end
