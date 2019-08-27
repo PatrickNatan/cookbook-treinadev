@@ -8,7 +8,7 @@ feature 'User update recipe' do
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user: user)
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user: user,status: "accepted")
     # simula a ação do usuário
     visit root_path
     click_on 'Entrar'
@@ -43,7 +43,7 @@ feature 'User update recipe' do
     Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
                   recipe_type: recipe_type, cuisine: 'Brasileira',
                   cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user: user)
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user: user,status: "accepted")
 
     # simula a ação do usuário
     visit root_path
@@ -80,7 +80,7 @@ feature 'User update recipe' do
       cook_time: 50, 
       ingredients:  'Farinha, açucar, cenoura',
       cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-      user:user)
+      user:user,status: "accepted")
     #-A-
     visit root_path
     click_on 'Entrar'
@@ -106,7 +106,7 @@ feature 'User update recipe' do
       cook_time: 50, 
       ingredients:  'Farinha, açucar, cenoura',
       cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-      user:user)
+      user:user,status: "accepted")
     #-A-
     visit root_path
     click_on 'Entrar'

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!,only: %i[new create edit update my_recipes]
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(status: [:accepted])
   end
 
   def show

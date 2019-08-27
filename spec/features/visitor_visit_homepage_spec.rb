@@ -16,7 +16,7 @@ feature 'Visitor visit homepage' do
                            recipe_type: recipe_type, cuisine: 'Brasileira',
                            cook_time: 50,
                            ingredients: 'Farinha, açucar, cenoura',
-                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user:user)
+                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user:user,status: "accepted")
 
     # simula a ação do usuário
     visit root_path
@@ -38,14 +38,14 @@ feature 'Visitor visit homepage' do
                            recipe_type: recipe_type, cuisine: 'Brasileira',
                            cook_time: 50,
                            ingredients: 'Farinha, açucar, cenoura',
-                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user:user)
+                           cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',user:user,status: "accepted")
 
     another_recipe = Recipe.create(title: 'Feijoada',
                                    recipe_type: another_recipe_type,
                                    cuisine: 'Brasileira', difficulty: 'Difícil',
                                    cook_time: 90,
                                    ingredients: 'Feijão e carnes',
-                                   cook_method: 'Misture o feijão com as carnes',user:user)
+                                   cook_method: 'Misture o feijão com as carnes',user:user,status: "accepted")
 
     # simula a ação do usuário
     visit root_path

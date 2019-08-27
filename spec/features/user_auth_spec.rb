@@ -60,7 +60,7 @@ feature 'User' do
                              cook_time: 60,
                              ingredients: 'Farinha, açucar, cenoura',
                              cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                             user: user)
+                             user: user,status: "accepted")
       #-A-
       visit root_path
       click_on recipe.title
