@@ -76,7 +76,17 @@ feature 'user can add and remove recipe to recipe list' do
             ingredients:  'Farinha, açucar, cenoura',
             cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
             user:user)
+        another_recipe = Recipe.create!(
+                title: 'Pudim',
+                difficulty: 'Médio',
+                recipe_type: recipe_type,
+                cuisine: 'Brasileira',
+                cook_time: 50, 
+                ingredients:  'Farinha, açucar, cenoura',
+                cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                user:user)
         recipe_list = RecipeList.create!(recipe: recipe,list: list)
+        recipe_list = RecipeList.create!(recipe: another_recipe,list: list)
         #-A-
         visit root_path
         click_on 'Entrar'

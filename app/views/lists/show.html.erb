@@ -1,8 +1,9 @@
 <h1><%= @list.name %></h1>
+
 <%if @list.recipes.any? %>
     <% @list.recipes.each do |r|%>
         <h1><%= r.title %></h1>
-        <%=link_to "Remover #{r.title}", r %>
+        <%=link_to "Remover #{r.title}", list_recipe_list_path(r),method: :delete %>
     <%end%>
 <%end%>
 <%= link_to 'Voltar', lists_path %>
