@@ -15,10 +15,8 @@ class RecipeListsController < ApplicationController
     def destroy
         @recipe = Recipe.find(params[:id])
         @list = List.find(params[:id]) 
-
         @recipe_list = RecipeList.find_by(recipe: @recipe, list: @list)
         @recipe_list.destroy
-
         redirect_to @list
     end
 end
