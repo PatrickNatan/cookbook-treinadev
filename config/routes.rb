@@ -21,9 +21,15 @@ Rails.application.routes.draw do
   get 'control_recipes', to: "recipes#control_recipes"
 
   #API
-  namespace :api do
-    namespace :v1 do
-      resources :recipes, only: %i[show]
+  namespace :api ,defaults: { format: 'json' } do
+    namespace :v1,defaults: { format: 'json' } do
+      resources :recipes,      only: %i[create show destroy index] do
+        member do
+          post 'accepted'
+          post 'declined'
+        end
+      end
+      resources :recipe_types, only: %i[create show]
     end
   end
   
