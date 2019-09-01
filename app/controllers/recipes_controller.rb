@@ -1,11 +1,12 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!,only: %i[new create edit update my_recipes]
+  before_action :find_recipe,only: %i[show edit update accept declined]
+
   def index
     @recipes = Recipe.where(status: [:accepted])
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     if current_user
     @lists = current_user.lists
     @recipe_list = RecipeList.new
@@ -28,14 +29,12 @@ class RecipesController < ApplicationController
   end
   
   def edit
-    @recipe = Recipe.find(params[:id])
     unless current_user.recipe_owner?(@recipe)
       redirect_to root_path
     end
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
@@ -47,21 +46,42 @@ class RecipesController < ApplicationController
   def search
     @recipes = Recipe.where('title LIKE ?', "%#{params[:q]}%")
     if @recipes.empty?
-      flash[:alert] = "Não foi possível encontrar a receita"
+      flash[:alert] = 'Não foi possível encontrar a receita'
       redirect_to root_path
     end
   end
 
   def my_recipes
     if current_user.recipes.empty?
-      flash[:alert] = "Você não tem receitas cadastradas"
+      flash[:alert] = 'Você não tem receitas cadastradas'
       redirect_to root_path
     end
     @recipes= current_user.recipes
   end
 
+  def control_recipes
+    @recipes = Recipe.where(status:[:pending])
+  end
+
+  def accept
+    @recipe.accepted!
+    flash[:notice] = "#{@recipe.title} aceita"
+    redirect_to control_recipes_path
+  end
+
+  def declined
+    @recipe.declined!
+    flash[:notice] = "#{@recipe.title} rejeitada"
+    redirect_to control_recipes_path
+  end
+
   private
+
   def recipe_params
     params.require(:recipe).permit(:title,:recipe_type_id,:cuisine,:difficulty,:cook_time,:ingredients,:cook_method,:recipe_img)
+  end
+
+  def find_recipe
+    @recipe = Recipe.find(params[:id])    
   end
 end

@@ -15,8 +15,6 @@ feature 'admin control user recipes' do
         cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
         user: user,status: 1)
 
-        recipe.reload
-        another_recipe.reload
         #-A-
         visit root_path
         #--A
@@ -38,16 +36,9 @@ feature 'admin control user recipes' do
                         cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
                         cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
                         user: user)
-        recipe.reload
-        another_recipe.reload
         #-A-
+        login_as(user, scope: :user)   
         visit root_path
-        click_on 'Entrar'
-        within("form") do
-              fill_in 'Email', with: user.email
-              fill_in 'Senha', with: '123456'
-              click_on 'Entrar'
-        end 
         click_on 'Controlar receitas'
         click_on "Aceitar #{recipe.title}"
         click_on "Rejeitar #{another_recipe.title}"

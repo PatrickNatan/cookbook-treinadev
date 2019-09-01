@@ -1,0 +1,5 @@
+<% @recipes.each do |recipe| %>
+    <%= recipe.title%>
+    <%= link_to "Aceitar #{recipe.title}",accept_recipe_path(recipe),method: :post%>
+    <%= link_to "Rejeitar #{recipe.title}",declined_recipe_path(recipe),method: :post%>
+<% end %>
