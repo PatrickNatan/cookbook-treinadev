@@ -32,7 +32,7 @@ describe "API Recipe" do
           user_id: user.id }  }
 
     expect(response).to have_http_status(412)
-    expect(response.body).to include('blank')#arrumar no i18n
+    expect(response.body).to include('Título não pode ficar em branco')
     expect(Recipe.count).to eq 0
   end
 
