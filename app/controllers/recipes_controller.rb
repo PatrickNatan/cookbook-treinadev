@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!,only: %i[new create edit update my_recipes]
-  before_action :find_recipe,only: %i[show edit update accept declined]
+  before_action :authenticate_user!,only: %i[new create edit update my_recipes destroy]
+  before_action :find_recipe,only: %i[show edit update accept declined destroy]
 
   def index
     @recipes = Recipe.where(status: [:accepted])
@@ -73,6 +73,14 @@ class RecipesController < ApplicationController
     @recipe.declined!
     flash[:notice] = "#{@recipe.title} rejeitada"
     redirect_to control_recipes_path
+  end
+
+  def destroy
+    unless current_user.recipe_owner?(@recipe)
+      redirect_to root_path
+    else
+      @recipe.destroy
+    end
   end
 
   private

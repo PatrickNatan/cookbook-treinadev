@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'recipes#index'
 
   get 'my_recipes', to: "recipes#my_recipes"
-  resources :recipes, only: %i[index show new create edit update] do 
+  resources :recipes, only: %i[index show new create edit update destroy] do 
     resources :recipe_lists, only: %i[create]  
     get 'search', on: :collection
     get 'my_recipes', on: :collection
